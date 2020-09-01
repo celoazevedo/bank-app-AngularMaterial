@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { BankService } from './bank.service'
 
@@ -35,7 +36,8 @@ import { HeaderComponent } from './header/header.component';
     MatButtonModule,
     MatCardModule,
     MatInputModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatExpansionModule
   ],
   providers: [BankService],
   bootstrap: [AppComponent]

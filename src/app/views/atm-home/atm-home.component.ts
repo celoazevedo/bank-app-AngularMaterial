@@ -12,6 +12,8 @@ export class AtmHomeComponent implements OnInit {
   amount: number;
   widthdrawl: boolean = false;
   deposite: boolean = false;
+  balance: boolean = false;
+  transaction: boolean = false;
 
   constructor(public bankService: BankService) { }
 
@@ -25,6 +27,17 @@ export class AtmHomeComponent implements OnInit {
     this.bankService.deposite(this.amount);
     this.deposite = true;
     console.log(this.amount)
+  }
+
+  checkBalance() {
+    this.bankService.balance(this.balance);
+    this.balance = true;
+  }
+
+  transactionList() {
+    let transactionList = this.bankService.transactions(this.transaction);
+    this.transaction = true;
+    return transactionList;
   }
 
   ngOnInit(): void {

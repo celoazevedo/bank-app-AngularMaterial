@@ -63,8 +63,13 @@ export class BankService {
     )
   }
 
+  balance(balance) {
+    return this.account.balance;
+  }
 
-
+  transactions(transactions) {
+    return this.account.transactions;
+  }
 
 
 }
