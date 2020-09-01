@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -44,4 +45,28 @@ export class BankService {
   };
 
   constructor() { }
+
+  widthdrawl(amount: number) {
+    let updatedBalance = this.account.balance - amount;
+    this.account.balance = updatedBalance;
+    alert(
+      'You widthdrew: ' + amount + 'U$' + '\n' +
+      'Your current ballance is: ' + updatedBalance
+    )
+  }
+
+  deposite(amount: number) {
+    let updatedBalance = this.account.balance + amount;
+    this.account.balance = updatedBalance;
+    alert('You deposited: ' + amount + 'U$' + '\n' +
+    'Your current ballance is: ' + updatedBalance
+    )
+  }
+
+
+
+
+
 }
+
+

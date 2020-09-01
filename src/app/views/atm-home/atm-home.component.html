@@ -1,44 +1,84 @@
 <mat-card class="card">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>User Name</mat-card-title>
-    <mat-card-subtitle>Since 1990</mat-card-subtitle>
+    <mat-card-title>{{ bankService.account.fname }}</mat-card-title>
+    <mat-card-subtitle>Since 2019</mat-card-subtitle>
   </mat-card-header>
-  <form>
+  <!-- <form> -->
     <mat-form-field>
-      <input
+      <input matInput
+      type="number"
+      required
+      placeholder="U$"
+      minlength="1"
+      [(ngModel)]="amount">
+      <!-- <input
         matInput
-        type="text"
+        type="number"
         name="amount"
         ngModel
         required
         placeholder="U$"
         minlength="1"
-        #title="ngModel">
-        <!-- <mat-error *ngIf="title.invalid">Please enter a post title.</mat-error> -->
+        #amount="ngModel">
+        <mat-error *ngIf="amount.invalid">Please enter desired amount.</mat-error> -->
     </mat-form-field>
-  </form>
+  <!-- </form> -->
   <mat-card-content>
-    <h1>
-      some text
-    </h1>
+    <h3 class="mat-body-1">
+      Welcome, {{bankService.account.fname}}
+    </h3>
   <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+    <p class="mat-body-1">
+      How can we help you today?
     </p>
+  </mat-card-content>
+  <!-- Display Feedback information here -->
+
+  <!-- WIDTHDRAWL INFO -->
+  <mat-card-content class= "widthdrawl-info" *ngIf = "widthdrawl">
+    <h3 class="mat-body-1">
+      Transaction Successful, you widthrew {{ this.amount }}
+    </h3>
+    <h3 class="mat-body-1">
+      Widthdrawl Amount = {{ bankService.account.amount }}
+    </h3>
+    <h4 class="mat-body-1">
+      Your remaining balance ia = {{ bankService.account.balance }}
+    </h4>
+  </mat-card-content>
+
+  <!-- DEPOSITE INFO -->
+  <mat-card-content class= "deposite-info" *ngIf = "deposite">
+    <h3 class="mat-body-1">
+      Transaction Successful, {{bankService.account.fname}}
+    </h3>
+    <p>
+      <!-- Deposit Amount = {{ this.value }} -->
+      <!-- Balance Amount = {{ this.value }} -->
+    </p>
+  </mat-card-content>
+  <!-- BALANCE INFO-->
+  <mat-card-content>
+    <h3>
+      <!-- Balance Amount = {{bankService.account.fname}} -->
+    </h3>
   </mat-card-content>
   <mat-card-actions>
     <button
     mat-raised-button
-    color= "accent">Widthdrawl</button>
+    color= "accent"
+    (click) = "onWidthdrawl()">Widthdrawl</button>
     <button
     mat-raised-button
-    color="basic">Deposit</button>
+    color="basic"
+    (click) = "onDeposite()">Deposit</button>
     <button
     mat-raised-button
     color="basic">Balance</button>
-    <!-- <button
+    <button
     mat-raised-button
-    color= "accent">Transactions</button> -->
+    style="width : 7em;"
+    color= "accent">Transactions</button>
   </mat-card-actions>
 </mat-card>
