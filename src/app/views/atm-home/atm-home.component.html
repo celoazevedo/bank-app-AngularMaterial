@@ -1,0 +1,44 @@
+<mat-card class="card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>User Name</mat-card-title>
+    <mat-card-subtitle>Since 1990</mat-card-subtitle>
+  </mat-card-header>
+  <form>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="amount"
+        ngModel
+        required
+        placeholder="U$"
+        minlength="1"
+        #title="ngModel">
+        <!-- <mat-error *ngIf="title.invalid">Please enter a post title.</mat-error> -->
+    </mat-form-field>
+  </form>
+  <mat-card-content>
+    <h1>
+      some text
+    </h1>
+  <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+    <p>
+      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+    mat-raised-button
+    color= "accent">Widthdrawl</button>
+    <button
+    mat-raised-button
+    color="basic">Deposit</button>
+    <button
+    mat-raised-button
+    color="basic">Balance</button>
+    <!-- <button
+    mat-raised-button
+    color= "accent">Transactions</button> -->
+  </mat-card-actions>
+</mat-card>
