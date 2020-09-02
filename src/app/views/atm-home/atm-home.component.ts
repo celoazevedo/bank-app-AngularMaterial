@@ -10,11 +10,6 @@ import { BankService } from '../../bank.service';
 export class AtmHomeComponent implements OnInit {
 
   value: number;
-  widthdrawl: boolean = false;
-  deposite: boolean = false;
-  balance: boolean = false;
-  listTransaction: boolean = false;
-  hidingWelcome: boolean = true;
 
   transactions = [];
 
@@ -22,26 +17,18 @@ export class AtmHomeComponent implements OnInit {
 
   onWidthdrawl() {
     this.bankService.widthdrawl(this.value);
-    this.widthdrawl = true;
-    this.hidingWelcome = false;
   }
 
   onDeposite() {
     this.bankService.deposite(this.value);
-    this.deposite = true;
-    this.hidingWelcome = false;
   }
 
   checkBalance() {
-    this.bankService.balance(this.balance);
-    this.balance = true;
-    this.hidingWelcome = false;
+    this.bankService.balance(this.value);
   }
 
   transactionList() {
-    let transactionList = this.bankService.transactions(this.listTransaction);
-    this.listTransaction = true;
-    this.hidingWelcome = false;
+    let transactionList = this.bankService.transactions(this.transactions);
     return transactionList;
   }
 

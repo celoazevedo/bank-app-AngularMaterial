@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing/app-routing.module'
 
+import { MatCurrencyFormatModule } from 'mat-currency-format';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -37,7 +38,8 @@ import { HeaderComponent } from './header/header.component';
     MatCardModule,
     MatInputModule,
     AppRoutingModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatCurrencyFormatModule
   ],
   providers: [BankService],
   bootstrap: [AppComponent]

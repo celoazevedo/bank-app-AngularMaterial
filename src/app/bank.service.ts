@@ -44,6 +44,15 @@ export class BankService {
     ],
   };
 
+  value: number;
+  ifWidthdrawl: boolean = false;
+  ifDeposite: boolean = false;
+  ifBalance: boolean = false;
+  ifListTransaction: boolean = false;
+  ifHidingWelcome: boolean = true;
+
+  listTransactions = [];
+
   constructor() { }
 
   widthdrawl(value: number) {
@@ -53,6 +62,12 @@ export class BankService {
       'You widthdrew: ' + value + 'U$' + '\n' +
       'Your current ballance is: ' + updatedBalance
     )
+
+    this.ifWidthdrawl = true;
+    this.ifDeposite = false;
+    this.ifHidingWelcome = false;
+    this.ifBalance = false;
+    this.ifListTransaction = false;
 
     let transactions = this.account.transactions;
     let newTransaction: {
@@ -77,6 +92,12 @@ export class BankService {
     'Your current ballance is: ' + updatedBalance
     )
 
+    this.ifDeposite = true;
+    this.ifWidthdrawl = false;
+    this.ifHidingWelcome = false;
+    this.ifBalance = false;
+    this.ifListTransaction = false;
+
     let transactions = this.account.transactions;
     let newTransaction: {
       date: any;
@@ -94,13 +115,22 @@ export class BankService {
   }
 
   balance(balance) {
+    this.ifBalance = true;
+    this.ifDeposite = false;
+    this.ifWidthdrawl = false;
+    this.ifHidingWelcome = false;
+    this.ifListTransaction = false
     return this.account.balance;
   }
 
   transactions(transactions) {
+    this.ifListTransaction = true;
+    this.ifBalance = false;
+    this.ifDeposite = false;
+    this.ifWidthdrawl = false;
+    this.ifHidingWelcome = false;
     return this.account.transactions;
   }
-
 
 }
 

@@ -1,1 +1,34 @@
-<p>teller works!</p>
+<p class="mat-display-1">Teller View</p>
+<mat-card class="card">
+  <mat-card-header>
+    <!-- <div mat-card-avatar class="example-header-image"></div> -->
+    <mat-card-title>{{ bankService.account.fname }} {{ bankService.account.lname }}</mat-card-title>
+    <mat-card-subtitle>Costumer Since 2019</mat-card-subtitle>
+  </mat-card-header>
+  <mat-form-field>
+    <input
+    mvndrMatCurrencyFormat
+    [allowNegative]="false"
+    [currencyCode]="'USD'"
+    id='inputId'
+    matInput
+    type="number"
+    min="0.01"
+    max="2500"
+    required
+    placeholder="U$"
+    minlength="1"
+    [(ngModel)]="value">
+    <!-- <mat-error *ngIf="value.invalid">Please enter desired amount.</mat-error> -->
+    <!-- <input
+      matInput
+      type="number"
+      name="amount"
+      ngModel
+      required
+      placeholder="U$"
+      minlength="1"
+      #amount="ngModel">
+      <mat-error *ngIf="amount.invalid">Please enter desired amount.</mat-error> -->
+  </mat-form-field>
+</mat-card>

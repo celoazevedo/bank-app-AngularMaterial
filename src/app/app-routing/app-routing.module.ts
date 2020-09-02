@@ -4,13 +4,15 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ContactComponent } from '../views/contact/contact.component';
 import { AtmHomeComponent } from '../views/atm-home/atm-home.component';
+import { TellerComponent } from '../views/teller/teller.component';
 
 //import the component associated with routes
 
 const routes: Routes = [
-  // { path: '', redirectTo: 'atm-home', pathMatch: 'full' },
+  { path: '', redirectTo: 'atm-home', pathMatch: 'full' },
   { path: 'atm-home', component: AtmHomeComponent },
-  { path: 'contact', component: ContactComponent }
+  { path: 'contact', component: ContactComponent },
+  { path: 'teller', component: TellerComponent }
 ];
 
 

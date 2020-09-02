@@ -1,0 +1,9 @@
+.mat-display-1 {
+  text-align: center;
+}
+
+mat-card {
+  max-width: 400px;
+  /* width: 80%; */
+  margin: auto;
+}
