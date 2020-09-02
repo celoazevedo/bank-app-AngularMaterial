@@ -10,10 +10,28 @@ import { BankService } from '../../bank.service';
 export class TellerComponent implements OnInit {
 
   value: number;
+  transactions = [];
 
   constructor(public bankService: BankService) { }
 
   ngOnInit(): void {
+  }
+
+  onWidthdrawl() {
+    this.bankService.widthdrawl(this.value);
+  }
+
+  onDeposite() {
+    this.bankService.deposite(this.value);
+  }
+
+  checkBalance() {
+    this.bankService.balance(this.value);
+  }
+
+  transactionList() {
+    let transactionList = this.bankService.transactions(this.transactions);
+    return transactionList;
   }
 
 }

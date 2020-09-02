@@ -5,6 +5,19 @@
     <mat-card-title>{{ bankService.account.fname }} {{ bankService.account.lname }}</mat-card-title>
     <mat-card-subtitle>Costumer Since 2019</mat-card-subtitle>
   </mat-card-header>
+  <mat-card-content class="mat-body-1" *ngIf = "bankService.ifHidingWelcome">
+    <h3>Customer Information</h3>
+      <p>Name: {{ bankService.account.fname }} {{ bankService.account.lname }}
+        <br>
+          Age: {{ bankService.account.age }}</p>
+      <p>Address: {{ bankService.account.address.street }}
+        <br>
+        {{ bankService.account.address.city }}, {{ bankService.account.address.state }} {{ bankService.account.address.zip }}
+        <br>
+        {{ bankService.account.address.country }}
+      </p>
+      <p>Current Balance: {{ bankService.account.balance }} {{ bankService.account.currency }}</p>
+  </mat-card-content>
   <mat-form-field>
     <input
     mvndrMatCurrencyFormat
@@ -31,4 +44,60 @@
       #amount="ngModel">
       <mat-error *ngIf="amount.invalid">Please enter desired amount.</mat-error> -->
   </mat-form-field>
+  <!-- WIDTHDRAWL INFO -->
+  <mat-card-content class= "widthdrawl-info" *ngIf = "bankService.ifWidthdrawl">
+    <p class="mat-body-1">
+      Widthdrawl Amount = {{ this.value }} <span>U$</span>
+    </p>
+    <p class="mat-body-1">
+      Current Balance = {{ bankService.account.balance }} <span>U$</span>
+    </p>
+  </mat-card-content>
+  <!-- DEPOSITE INFO -->
+  <mat-card-content class= "deposite-info" *ngIf = "bankService.ifDeposite">
+    <p class="mat-body-1">
+      Deposited Amount = {{ this.value }} <span>U$</span>
+    </p>
+    <p class="mat-body-1">
+      Current Balance = {{ bankService.account.balance }} <span>U$</span>
+    </p>
+  </mat-card-content>
+  <!-- BALANCE INFO-->
+  <mat-card-content *ngIf = "bankService.ifBalance">
+    <h3 class="mat-body-1">
+      Current Balance = {{ bankService.account.balance }} <span>U$</span>
+    </h3>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+    mat-raised-button
+    color= "basic"
+    style="width : 7em;"
+    (click) = "onWidthdrawl()">Widthdrawl</button>
+    <button
+    mat-raised-button
+    color="basic"
+    (click) = "onDeposite()">Deposit</button>
+    <button
+    mat-raised-button
+    color="basic"
+    style="width : 6em;"
+    (click) = "checkBalance()">Balance</button>
+    <button
+    mat-raised-button
+    style="width : 7.5em;"
+    color= "basic"
+    (click) = "transactionList()">Transactions</button>
+  </mat-card-actions>
+  <mat-accordion multi="true" *ngIf = "bankService.ifListTransaction">
+    <mat-expansion-panel *ngFor= "let transaction of bankService.account.transactions | slice:0:3">
+      <mat-expansion-panel-header>
+        Date: {{ transaction.date }}
+      </mat-expansion-panel-header>
+        <p class="mat-body-1">
+          {{ transaction.type }} : {{ transaction.amount }} <span>U$</span>
+        </p>
+    </mat-expansion-panel>
+  </mat-accordion>
+
 </mat-card>
