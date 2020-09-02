@@ -46,21 +46,51 @@ export class BankService {
 
   constructor() { }
 
-  widthdrawl(amount: number) {
-    let updatedBalance = this.account.balance - amount;
+  widthdrawl(value: number) {
+    let updatedBalance = this.account.balance - value;
     this.account.balance = updatedBalance;
     alert(
-      'You widthdrew: ' + amount + 'U$' + '\n' +
+      'You widthdrew: ' + value + 'U$' + '\n' +
       'Your current ballance is: ' + updatedBalance
     )
+
+    let transactions = this.account.transactions;
+    let newTransaction: {
+      date: any;
+      type: string;
+      amount: number;
+      currency: string;
+    } = {
+      date: new Date(),
+      type: "Widthdrawl",
+      amount: value,
+      currency: "usd",
+      };
+
+    return transactions.unshift(newTransaction);
   }
 
-  deposite(amount: number) {
-    let updatedBalance = this.account.balance + amount;
+  deposite(value: number) {
+    let updatedBalance = this.account.balance + value;
     this.account.balance = updatedBalance;
-    alert('You deposited: ' + amount + 'U$' + '\n' +
+    alert('You deposited: ' + value + 'U$' + '\n' +
     'Your current ballance is: ' + updatedBalance
     )
+
+    let transactions = this.account.transactions;
+    let newTransaction: {
+      date: any;
+      type: string;
+      amount: number;
+      currency: string;
+    } = {
+      date: new Date(),
+      type: "Deposit",
+      amount: value,
+      currency: "usd",
+      };
+
+    return transactions.unshift(newTransaction);
   }
 
   balance(balance) {

@@ -1,4 +1,5 @@
 <mat-card class="card">
+  <form></form>
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>{{ bankService.account.fname }}</mat-card-title>
@@ -6,12 +7,14 @@
   </mat-card-header>
   <!-- <form> -->
     <mat-form-field>
-      <input matInput
+      <input
+      id='inputId'
+      matInput
       type="number"
       required
       placeholder="U$"
       minlength="1"
-      [(ngModel)]="amount">
+      [(ngModel)]="value">
       <!-- <input
         matInput
         type="number"
@@ -24,25 +27,23 @@
         <mat-error *ngIf="amount.invalid">Please enter desired amount.</mat-error> -->
     </mat-form-field>
   <!-- </form> -->
-  <mat-card-content>
+  <mat-card-content *ngIf = "!hidingWelcome">
     <h3 class="mat-body-1">
       Welcome, {{bankService.account.fname}}
     </h3>
-  <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
     <p class="mat-body-1">
       How can we help you today?
     </p>
   </mat-card-content>
-
   <!-- Display Feedback information here -->
   <!-- WIDTHDRAWL INFO -->
   <mat-card-content class= "widthdrawl-info" *ngIf = "widthdrawl">
     <h3 class="mat-body-1">
-      Transaction Successful, you widthrew {{ this.amount }}
+      Transaction Successful, you widthrew {{ this.value }}
     </h3>
-    <h4 class="mat-body-1">
+    <!-- <h4 class="mat-body-1">
       Your remaining balance ia = {{ bankService.account.balance }}
-    </h4>
+    </h4> -->
   </mat-card-content>
   <!-- DEPOSITE INFO -->
   <mat-card-content class= "deposite-info" *ngIf = "deposite">
@@ -50,7 +51,7 @@
       Transaction Successful, {{bankService.account.fname}}
     </h3>
     <p class="mat-body-1">
-      Deposited Amount = {{ this.amount }}
+      Deposited Amount = {{ this.value }}
     </p>
     <p class="mat-body-1">
       Current Balance = {{ bankService.account.balance }}
@@ -62,16 +63,6 @@
       Current Balance = {{ bankService.account.balance }}
     </h3>
   </mat-card-content>
-  <!-- Last 3 Transactions LIST -->
-  <mat-accordion *ngIf = "transaction">
-    <mat-expansion-panel *ngFor= "let transaction of bankService.account.transactions">
-      <mat-expansion-panel-header>
-        {{ transaction.type }} on {{ transaction.date }}
-      </mat-expansion-panel-header>
-      <p class="mat-body-1"> {{ transaction.amount }} U$</p>
-    </mat-expansion-panel>
-  </mat-accordion>
-
   <mat-card-actions>
     <button
     mat-raised-button
@@ -92,4 +83,15 @@
     color= "basic"
     (click) = "transactionList()">Transactions</button>
   </mat-card-actions>
+  <!-- Last 3 Transactions LIST -->
+  <!-- <mat-accordion multi="true" *ngIf = "listTransaction && transacions.length > 0"> -->
+  <mat-accordion multi="true" *ngIf = "listTransaction">
+    <mat-expansion-panel *ngFor= "let transaction of bankService.account.transactions | slice:0:3">
+      <mat-expansion-panel-header>
+        Date: {{ transaction.date }} : {{ transaction.type }}
+      </mat-expansion-panel-header>
+      <p class="mat-body-1"> {{ transaction.amount }} U$</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <!-- <p class="mat-body-1" *ngIf= "transactions.length <= 0">No trasactions to display!</p> -->
 </mat-card>
